@@ -1,8 +1,18 @@
 from enum import Enum
 from users import users
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or ["*"] to allow all origins (not recommended for production)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class UserNames(str, Enum):
     Eua = "Eua"
@@ -10,7 +20,7 @@ class UserNames(str, Enum):
     John = "John"
     Hwa_Ryun = "Hwa_Ryun"
     Makima = "Makima"
-
+ 
 @app.get("/")
 async def root():
     return{"message": "Hello World"}
@@ -25,16 +35,8 @@ async def get_item(user_id: int):
 
 @app.get("/users/names/{name}")
 async def get_users_names(name: UserNames):
-    # if name is UserNames.Eua:
-    #     return {"Name": UserNames.Eua.value}
-    # elif name is UserNames.Jack:
-    #     return {"Name": UserNames.Jack.value}
-    # elif name is UserNames.John:
-    #     return {"Name": UserNames.John.value}
-    # elif name is UserNames.Hwa_Ryun:
-    #     return {"Name": UserNames.Hwa_Ryun.value}
-    # elif name is UserNames.Makima:
-    #     return {"Name": UserNames.Makima.value}
-    # else:
-    #     return {"message": "User not found"}
     return{"name" : name}
+
+@app.get("/signup")
+async def signup(username: str, password: str):
+    return {"username": username, "password": password}

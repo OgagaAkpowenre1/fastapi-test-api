@@ -1,6 +1,9 @@
 from enum import Enum
+import random
 from users import users
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel, Field
+from passlib.context import CryptContext
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -14,13 +17,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-class UserNames(str, Enum):
-    Eua = "Eua"
-    Jack = "Jack"
-    John = "John"
-    Hwa_Ryun = "Hwa_Ryun"
-    Makima = "Makima"
- 
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+class User(BaseModel):
+    uid: int = Field(default_factory=lambda: random.randint(0, 100))
+    username: str
+    password: str
+
+def hash_password(password: str):
+    return pwd_context.hash(password)
+
+def verify_password(plain_password, hashed_password):
+    return pwd_context.verify(plain_password, hashed_password)
+
 @app.get("/")
 async def root():
     return{"message": "Hello World"}
@@ -29,14 +38,14 @@ async def root():
 async def get_users():
     return{"users": users}
 
-@app.get("/users/{user_id}")
-async def get_item(user_id: int):
-    return{"user_id": user_id}
+@app.post("/signup")
+async def signup(user: User):
+    if any(u["username"].lower() == user.username.lower() for u in users):
+        raise HTTPException(status_code=409, detail="Username already taken")
 
-@app.get("/users/names/{name}")
-async def get_users_names(name: UserNames):
-    return{"name" : name}
-
-@app.get("/signup")
-async def signup(username: str, password: str):
-    return {"username": username, "password": password}
+    hashed_password = hash_password(user.password)
+    user.password = hashed_password
+    users.append(user.dict())
+    user_dict = user.dict()
+    user_dict.pop("password")
+    return {"message": "User created", "user": user_dict}

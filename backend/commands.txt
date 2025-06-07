@@ -1,4 +1,4 @@
 to restart virtual env: cd backend
 source venv/bin/activate
 to start server
-fastapi dev main.py
+fastapi dev main.py 

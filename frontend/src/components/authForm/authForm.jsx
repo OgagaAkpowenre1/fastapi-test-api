@@ -1,19 +1,33 @@
 import { useState } from 'react';
 import Header from '../header/header';
+import { ToastContainer, toast } from "react-toastify"
 import './authForm.css'
 
 const AuthForm =  () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false)
 
     const signUp = async (e) => {
         e.preventDefault()
+        toast.info("Signing up...")
         try {
-            const response = await fetch(`/api/signup?username=${username}&password=${password}`)
+            const response = await fetch(`/api/signup`, {
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            })
             const data = await response.json()
             console.log("Signup response", data)
+            toast.success("Signed up successfully!")
         } catch (error) {
             console.log("Signup error", error)
+            toast.error("An error occurred!")
         }
     }
 
@@ -35,7 +49,7 @@ const AuthForm =  () => {
                 <button type="submit">Sign Up</button>
             </form>
 
-            
+            <ToastContainer position='bottom-right' />
         </div>
     )
 }

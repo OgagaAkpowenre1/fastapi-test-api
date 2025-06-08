@@ -1,8 +1,9 @@
 .note-list-item{
     text-align: center;
     transition: 0.5s background;
+    cursor: pointer;
 }
 
 .note-list-item:hover {
-    background: darkgray;
+    background: darkgray;   
 }

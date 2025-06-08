@@ -1,0 +1,11 @@
+.text-box {
+    flex-grow: 2;
+    flex-basis: 70%;
+}
+
+textarea {
+    max-width: 1200px;
+    max-height: 1000px;
+    width: 800px;
+    height: 500px;
+}

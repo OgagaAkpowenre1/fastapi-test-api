@@ -11,12 +11,8 @@
 
 .note-list {
     border: 1px solid black;
-    /* padding: 2rem; */
-    
-
     overflow: scroll;
     width: 100%;
-    
     height: 80%;
 }
 
@@ -27,15 +23,12 @@ ul {
 
 @media (max-width: 600px) {
     .note-list-container {
-        /* right: 0;
-        bottom: 0; */
-        flex-basis: 100%;
-        width: 95%;
-        /* top: 0; */
-        left: 0;
-        /* padding: 0 1.2rem; */
-        margin: 0;
+        /* flex-basis: 100%; */
+        /* width: 80%; */
+        right: 0;
+        margin: auto;
         position: absolute;
+        overflow: hidden;
         transition: transform 0.3s;
     }
 
@@ -45,5 +38,6 @@ ul {
 
     .note-list-container.hidden{
         transform: translateX(100%)
+        /* display: none; */
     }
 }

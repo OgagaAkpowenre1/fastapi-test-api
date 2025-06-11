@@ -9,7 +9,7 @@ const NoteAppContainer = () => {
     
     return (
         <>
-            <Navbar toggleNoteList={() => {setShowNoteList(!showNoteList);console.log(showNoteList)}} showNoteList={showNoteList} />
+            <Navbar toggleNoteList={() => {setShowNoteList(!showNoteList)}} showNoteList={showNoteList} />
             <div className='note-app-container'>
             <TextBox className={showNoteList ? 'hidden' : 'visible'} />
             <NoteList className={showNoteList ? 'visible' : 'hidden'} />

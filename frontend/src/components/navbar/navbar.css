@@ -12,7 +12,6 @@
 .navbar > .right-items {
     display:flex;
     align-items: center;
-
 }
 
 .navbar > .right-items img {
@@ -39,6 +38,5 @@
 
     .navbar > .right-items > i{
         display: block;
-
     }
 }

@@ -5,7 +5,8 @@
     width: 100%;
     flex-grow: 1;
     flex-basis: 30%;
-    margin-left: 2rem;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .note-list {
@@ -26,6 +27,23 @@ ul {
 
 @media (max-width: 600px) {
     .note-list-container {
-        display: none;
+        /* right: 0;
+        bottom: 0; */
+        flex-basis: 100%;
+        width: 95%;
+        /* top: 0; */
+        left: 0;
+        /* padding: 0 1.2rem; */
+        margin: 0;
+        position: absolute;
+        transition: transform 0.3s;
+    }
+
+    .note-list-container.visible {
+        transform: translateX(0);
+    }
+
+    .note-list-container.hidden{
+        transform: translateX(100%)
     }
 }

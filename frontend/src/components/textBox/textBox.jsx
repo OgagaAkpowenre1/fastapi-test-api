@@ -1,8 +1,8 @@
 import './textBox.css'
 
-const TextBox = () => {
+const TextBox = ({className}) => {
     return (
-        <div className='text-box'>
+        <div className={`text-box ${className}`}>
         <textarea></textarea>
         </div>
     )

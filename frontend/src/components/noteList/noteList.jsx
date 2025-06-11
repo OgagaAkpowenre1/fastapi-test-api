@@ -3,10 +3,10 @@ import NoteListItem from '../noteListItem/noteListItem';
 import ModifyButtons from '../modifyButtons/modifyButtons';
 
 
-const NoteList = () => {
+const NoteList = ({className}) => {
 
     return (
-        <div className='note-list-container'>
+        <div className={`note-list-container ${className}`}>
         <div className='note-list'>
         <ul>
         {[...Array(9)].map((_, index) => 

@@ -2,6 +2,7 @@
     flex-grow: 2;
     flex-basis: 60%;
     margin-right: 2rem;
+    box-sizing: border-box;
 }
 
 textarea {
@@ -13,8 +14,22 @@ textarea {
 
 @media (max-width: 600px) {
     .text-box {
+        /* right: 0;
+        bottom: 0; */
         flex-basis: 100%;
-        width: 100%;
+        width: 95%;
         margin: 0;
+        left: 0;
+        /* top: 0; */
+        position: absolute;
+        transition: transform 0.3s;
+    }
+
+    .text-box.hidden {
+        transform: translateX(-100%);
+    }
+
+    .text-box.visible {
+        transform: translateX(0%);
     }
 }

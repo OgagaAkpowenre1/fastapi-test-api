@@ -11,8 +11,8 @@ const NoteAppContainer = () => {
         <>
             <Navbar toggleNoteList={() => {setShowNoteList(!showNoteList);console.log(showNoteList)}} showNoteList={showNoteList} />
             <div className='note-app-container'>
-            <TextBox />
-            <NoteList />
+            <TextBox className={showNoteList ? 'hidden' : 'visible'} />
+            <NoteList className={showNoteList ? 'visible' : 'hidden'} />
             </div>
         </>
     )

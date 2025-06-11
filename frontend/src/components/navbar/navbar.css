@@ -5,20 +5,40 @@
     padding:0rem 2rem;
 }
 
-a {
+.navbar > a {
     text-decoration: none;
 }
  
-.user-info {
+.navbar > .right-items {
     display:flex;
     align-items: center;
 
 }
 
-img {
+.navbar > .right-items img {
     border-radius: 50%;
     height: 30px;
     width: 30px;
     margin-left: 20px;
     cursor: pointer;   
+}
+
+.navbar > .right-items > i{
+    display: none;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        padding: 0rem 1.2rem;
+    }
+
+    .navbar > .right-items > p {
+        display: none;
+    }
+
+    .navbar > .right-items > i{
+        display: block;
+
+    }
 }

@@ -7,3 +7,9 @@
     padding: 0rem 2rem;
     box-sizing: border-box;
 }
+
+@media (max-width: 600px) {
+    .note-app-container {
+        flex-direction: column;
+    }
+}

@@ -41,6 +41,13 @@
   color: #888;
 } */
 
+:root {
+  /* screen width for tablets */
+  --tablet: 768px;
+  /* screen width for mobile */
+  --mobile: 480px;
+}
+
 html, body, #root {
   margin: 0;
   padding: 0;

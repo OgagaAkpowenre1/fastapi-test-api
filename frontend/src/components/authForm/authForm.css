@@ -19,7 +19,7 @@
     margin-bottom: 1rem;
 }
 
-form {
+.form-container > form {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -27,18 +27,18 @@ form {
     place-items: center;
 }
 
-label {
+.form-container > label {
     margin-right: 15px;
 }
 
-input {
+.form-container > input {
     padding: 0.5rem;
     border: 2px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
 }
 
-button {
+.form-container > button {
     padding: 0.7rem;
     border: none;
     background-color: black;
@@ -48,6 +48,6 @@ button {
     transition: background 0.5s;
 }
 
-button:hover {
+.form-container > button:hover {
     background-color: #333;
   }

@@ -24,10 +24,10 @@ ul {
 @media (max-width: 600px) {
     .note-list-container {
         /* flex-basis: 100%; */
-        /* width: 80%; */
-        right: 0;
-        margin: auto;
-        position: absolute;
+        width: 95%;
+        /* right: 0; */
+        margin: 0;
+        /* position: absolute; */
         overflow: hidden;
         transition: transform 0.3s;
     }
@@ -37,7 +37,7 @@ ul {
     }
 
     .note-list-container.hidden{
-        transform: translateX(100%)
-        /* display: none; */
+        transform: translateX(100%);
+        display: none;
     }
 }

@@ -1,11 +1,11 @@
 from enum import Enum
-import random
-from users import users
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel, Field
 from passlib.context import CryptContext
 from fastapi.middleware.cors import CORSMiddleware
-
+from sqlalchemy.orm import Session
+from database import SessionLocal, get_db
+from auth import UserCreate, UserLogin, create_user, login_user
 
 app = FastAPI()
 
@@ -19,13 +19,20 @@ app.add_middleware(
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-def hash_password(password: str):
-    return pwd_context.hash(password)
-
-def verify_password(plain_password, hashed_password):
-    return pwd_context.verify(plain_password, hashed_password)
-
 @app.get("/")
 async def root():
     return{"message": "Hello World"}
 
+@app.post("/users/create")
+async def register_user(user: UserCreate, db: Session = Depends(get_db)):
+    try:
+        return create_user(user, db)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@app.post("/users/login")
+async def login(user: UserLogin, db: Session = Depends(get_db)):
+    try:
+        return login_user(user, db)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))

@@ -1,0 +1,7 @@
+curl -X POST http://localhost:8000/users/create \
+-H "Content-Type: application/json" \
+-d '{"username": "daniel", "password": "test1234"}'
+
+curl -X POST http://localhost:8000/users/login \
+-H "Content-Type: application/json" \
+-d '{"username": "daniel", "password": "test1234"}'

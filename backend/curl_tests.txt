@@ -5,3 +5,22 @@ curl -X POST http://localhost:8000/users/create \
 curl -X POST http://localhost:8000/users/login \
 -H "Content-Type: application/json" \
 -d '{"username": "daniel", "password": "test1234"}'
+
+curl -X POST http://localhost:8000/users/create \
+-H "Content-Type: application/json" \
+-d '{"username": "daniel2", "password": "test1234", "profile_pic": "hi"}'
+
+curl -X POST http://localhost:8000/users/login \
+-H "Content-Type: application/json" \
+-d '{"username": "daniel3", "password": "test123"}'
+
+curl -X PUT http://localhost:8000/users/2/edit \
+-H "Content-Type: application/json" \
+-d '{"username": "daniel3", "password": "test123", "profile_pic": "hello"}'
+
+{"message":"Login successful","user_id":3,"username":"daniel3","profile_pic":"hello","access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE3NTEzMzI2NzV9.VoZr2BTJ4C2qegw-7BM-p_czlB84KzoVckuMh4wKGBA","token_type":"bearer"}
+
+curl -X POST http://localhost:8000/notes/create \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE3NTEzMzI2NzV9.VoZr2BTJ4C2qegw-7BM-p_czlB84KzoVckuMh4wKGBA" \
+-H "Content-Type: application/json" \
+-d '{"content": "my note content1"}'

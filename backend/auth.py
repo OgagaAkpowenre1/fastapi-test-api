@@ -93,5 +93,24 @@ def update_user(user_id: int, updates: UserUpdate, db: Session):
 
     return user
 
-    
+def fetch_all_users(db: Session):
+    users = db.query(User).all()
+    return users
 
+
+
+def delete_user(user_id: int, db: Session):
+    user  = db.query(User).filter(User.id == user_id).first()
+    if user:
+        db.delete(user)
+        db.commit()
+
+def delete_all_users(db:Session):
+    users = db.query(User).all()
+    count = len(users)
+    for user in users:
+        db.delete(user)
+    db.commit()
+
+    return count
+    

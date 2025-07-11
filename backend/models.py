@@ -10,7 +10,7 @@ class User(Base):
     password = Column(String, nullable=False)
     profile_pic = Column(String, nullable=True)
 
-    notes = relationship("Note", back_populates="owner")
+    notes = relationship("Note", back_populates="owner", cascade="all, delete")
 
 class Note(Base):
     __tablename__ = "notes"

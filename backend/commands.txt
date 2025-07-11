@@ -4,3 +4,7 @@ to start server
 fastapi dev main.py 
 or
 uvicorn main:app --reload
+
+
+to do
+connect frontend to backend

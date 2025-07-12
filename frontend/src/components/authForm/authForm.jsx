@@ -40,7 +40,7 @@ const AuthForm =  () => {
 
             if (createRes.ok){
                 toast.success("Account created succesfully!")
-                login({ username: username, profilePic: 'default.jpg' }) // or whatever you have
+                login({ username: createData.username, profilePic: createData.profile_pic }) // or whatever you have
                 navigate('/app')
             } else if (createRes.status === 400 && createData.detail === "Username already exists") {
                 //Login existing user
@@ -65,7 +65,7 @@ const AuthForm =  () => {
                     console.log("Login error reached")
                     throw new Error(loginData.detail || "Login failed");
                 }
-                login({ username: username, profilePic: 'default.jpg' }) // or whatever you have
+                login({ username: loginData.username, profilePic: loginData.profile_pic }) // or whatever you have
                 navigate('/app')
                 toast.success("Logged in successfully!")
             } else {
@@ -101,7 +101,7 @@ const AuthForm =  () => {
                 <button type="submit">Sign Up</button>
             </form>
 
-            <ToastContainer position='bottom-right' />
+            
         </div>
     )
 }

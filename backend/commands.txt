@@ -7,4 +7,5 @@ uvicorn main:app --reload
 
 
 to do
-connect frontend to backend
+add a logout button
+fetch notes and display them

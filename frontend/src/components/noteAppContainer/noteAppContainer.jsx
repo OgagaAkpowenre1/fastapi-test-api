@@ -3,9 +3,13 @@ import './noteAppContainer.css'
 import NoteList from '../noteList/noteList';
 import TextBox from '../textBox/textBox';
 import Navbar from '../navbar/navbar'
+import { useAuth } from '../../context/authContext';
 
 const NoteAppContainer = () => {
     const [showNoteList, setShowNoteList] = useState(false)
+    const {user} = useAuth()
+
+    console.log(user)
     
     return (
         <>

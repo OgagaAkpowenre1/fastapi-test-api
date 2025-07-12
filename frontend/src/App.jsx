@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import AuthForm from './components/authForm/authForm'
 import { AuthProvider, useAuth } from './context/authContext'
 import './App.css'
+import { ToastContainer } from 'react-toastify'
 import NoteAppContainer from './components/noteAppContainer/noteAppContainer'
 
 function ProtectedRoute({children}) {
@@ -11,11 +12,12 @@ function ProtectedRoute({children}) {
 }
 
 function App() {
-  
+
 
   return (
     <AuthProvider>
       <div className='app-container'>
+      <ToastContainer position='bottom-right' />
       <Router>
         <Routes>
           

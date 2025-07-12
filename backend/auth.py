@@ -63,7 +63,7 @@ def login_user(user_login: UserLogin, db: Session):
         raise HTTPException(status_code=401, detail="Invalid username or password")
 
     if not verify_password(user_login.password, user.password):
-        raise HTTPException(status_code=401, detail="Incorrect password")
+        raise HTTPException(status_code=401, detail="Incorrect password or username already taken")
 
     token = create_access_token(data={"user_id": user.id})
     return {"message": "Login successful", "user_id": user.id, "username": user.username, "profile_pic": user.profile_pic, "access_token": token, "token_type": "bearer"}

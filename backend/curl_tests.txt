@@ -44,3 +44,7 @@ curl -X POST http://localhost:8000/users/delete/all \
 curl -X POST http://localhost:8000/users/notes/delete/2 \
 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE3NTIyNDQ0NjV9.ItC_lpWxbIfnlas8Pjnm-QnOlsSLmcuh-8HXsYqlNao"
 
+users
+daniel-123
+daniel1-123
+daniel2-123

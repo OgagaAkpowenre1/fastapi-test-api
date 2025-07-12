@@ -13,7 +13,9 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # or ["*"] to allow all origins (not recommended for production)
+    allow_origins=[
+    "https://5173-firebase-fastapi-test-api-1748915675389.cluster-jbb3mjctu5cbgsi6hwq6u4btwe.cloudworkstations.dev"
+], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -29,6 +31,7 @@ async def root():
 # user signup route
 @app.post("/users/create")
 async def create_user_route(user: UserCreate, db: Session = Depends(get_db)):
+    #raise HTTPException(status_code=400, detail="Test error")  # hardcoded test
     try:
         return create_user(user, db)
     except ValueError as e:

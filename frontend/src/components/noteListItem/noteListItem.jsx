@@ -1,9 +1,10 @@
 import './noteListItem.css'
 
-const NoteListItem = () => {
+const NoteListItem = ({note, onClick}) => {
+    console.log(note)
     return (
-        <div className='note-list-item'>
-        <p>I am a list item</p>
+        <div className='note-list-item' onClick={onClick}>
+        <p>{note.content.slice(0, 30)|| 'Untitled Note'}</p>
         </div>
     )
 }

@@ -1,10 +1,11 @@
 import './modifyButtons.css'
+import { toast } from 'react-toastify';
 
-const ModifyButtons = () => {
+const ModifyButtons = ({handleCreateNote, handleSave}) => {
     return (
         <div className='button-container'>
-            <button>Save</button>
-            <button>New</button>
+            <button onClick={handleSave}>Save</button>
+            <button onClick={handleCreateNote}>New</button>
         </div>
     )
 }

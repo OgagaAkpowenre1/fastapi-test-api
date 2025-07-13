@@ -24,7 +24,7 @@ def fetch_user_notes(user_id: int, db: Session):
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
-    return user.notes
+    return user.notes 
 
 def delete_user_note(user_id: int, note_id: int, db:Session):
     user = db.query(User).filter(User.id == user_id).first()
@@ -44,6 +44,9 @@ def edit_note(user_id: int, note_id: int, updated_content: str, db:Session):
     note =  db.query(Note).filter(Note.id == note_id, Note.user_id == user_id).first()
     if not note:
         raise HTTPException(status_code=404, detail="Note not found")
+
+    print("BEFORE:", note.content)
     note.content = updated_content
+    print("AFTER:", note.content)
     db.commit()
     return note

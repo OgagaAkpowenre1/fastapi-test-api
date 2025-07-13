@@ -1,22 +1,24 @@
 import './noteList.css'
 import NoteListItem from '../noteListItem/noteListItem';
 import ModifyButtons from '../modifyButtons/modifyButtons';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 
-const NoteList = ({className}) => {
-
+const NoteList = ({className, onSelectNote, notes, handleCreateNote, handleSave}) => {
+    
     return (
         <div className={`note-list-container ${className}`}>
         <div className='note-list'>
         <ul>
-        {[...Array(9)].map((_, index) => 
-            <li>
-                <NoteListItem key={index} />
+        {notes.map((note, index) => 
+            <li key={note.id || index}>
+                <NoteListItem note={note} onClick={() => onSelectNote(note)} />
             </li>
         )}
         </ul>
         </div>
-        <ModifyButtons />
+        <ModifyButtons handleCreateNote={handleCreateNote} handleSave={handleSave} />
         </div>
     )
 }

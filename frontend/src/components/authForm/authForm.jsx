@@ -21,7 +21,7 @@ const AuthForm =  () => {
         try {
 
             //Create new user 
-            console.log("Creating new user")
+            // console.log("Creating new user")
             const createRes = await fetch(`/api/users/create`, {
                 method: 'POST', 
                 headers: {
@@ -36,7 +36,7 @@ const AuthForm =  () => {
 
             //Create new user response data
             const createData = await createRes.json()
-            console.log("Creation response", createData)
+            // console.log("Creation response", createData)
 
             if (createRes.ok){
                 toast.success("Account created succesfully!")
@@ -44,7 +44,7 @@ const AuthForm =  () => {
                 navigate('/app')
             } else if (createRes.status === 400 && createData.detail === "Username already exists") {
                 //Login existing user
-                console.log("Logging in user")
+                // console.log("Logging in user")
                 const loginRes = await fetch(`/api/users/login`, {
                     method: 'POST',
                     headers: {
@@ -59,7 +59,7 @@ const AuthForm =  () => {
 
                 //Login user response
                 const loginData = await loginRes.json()
-                console.log("Login response", loginData)
+                // console.log("Login response", loginData)
 
                 if (!loginRes.ok) {
                     console.log("Login error reached")
@@ -69,12 +69,12 @@ const AuthForm =  () => {
                 navigate('/app')
                 toast.success("Logged in successfully!")
             } else {
-                console.log("Creation error reached")
+                // console.log("Creation error reached")
                 throw new Error(createData.detail || "Signup failed")
             }
 
             // Show app page
-            console.log("Auth success — show app now");
+            // console.log("Auth success — show app now");
             // optionally save token or set logged-in state here
             
         } catch (error) {

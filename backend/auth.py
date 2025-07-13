@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 from models import User
 from passlib.context import CryptContext
-from fastapi import HTTPException, Depends
+from fastapi import HTTPException, Depends, Request
 from database import SessionLocal, get_db
 from fastapi.security import OAuth2PasswordBearer
 from auth_utils import create_access_token, verify_token
@@ -11,13 +11,28 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/users/login")
 
-def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+# def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+#     payload = verify_token(token)
+#     if payload is None:
+#         raise HTTPException(status_code=401, detail="Invalid or expired token")
+#     user = db.query(User).filter(User.id == payload.get("user_id")).first()
+#     if user is None:
+#         raise HTTPException(status_code=404, detail="User not found")
+#     return user
+
+def get_current_user(request: Request, db: Session = Depends(get_db)):
+    token = request.cookies.get("access_token")
+    if token is None:
+        raise HTTPException(status_code=401, detail="No token found in cookies")
+    
     payload = verify_token(token)
     if payload is None:
         raise HTTPException(status_code=401, detail="Invalid or expired token")
+    
     user = db.query(User).filter(User.id == payload.get("user_id")).first()
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
+    
     return user
 
 class UserCreate(BaseModel):

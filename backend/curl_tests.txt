@@ -4,7 +4,7 @@ curl -X POST http://localhost:8000/users/create \
 
 curl -X POST http://localhost:8000/users/login \
 -H "Content-Type: application/json" \
--d '{"username": "daniel", "password": "test1234"}'
+-d '{"username": "daniel2", "password": "123"}'
 
 curl -X POST http://localhost:8000/users/create \
 -H "Content-Type: application/json" \
@@ -15,7 +15,7 @@ curl -X POST http://localhost:8000/users/login \
 -d '{"username": "daniel2", "password": "test1234"}'
 
 curl -X GET http://localhost:8000/notes/fetch \
--H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE3NTIyNDg4OTV9.kvVk2HyHmTtBuOVrf8Z8y1WXcVAWBzC6G7oq7sMEIkY" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE3NTI0MjcyODV9.4WDUWmebLfakwUPNsjBR5W3s4LLavRl8-tZE6dQj_Sk" \
 -H "Content-Type: application/json" \
 -d ''
 

@@ -1,5 +1,6 @@
 from enum import Enum
 from fastapi import FastAPI, HTTPException, Depends
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from passlib.context import CryptContext
 from fastapi.middleware.cors import CORSMiddleware
@@ -41,7 +42,19 @@ async def create_user_route(user: UserCreate, db: Session = Depends(get_db)):
 @app.post("/users/login")
 async def login_user_route(user: UserLogin, db: Session = Depends(get_db)):
     try:
-        return login_user(user, db)
+        data = login_user(user, db)
+        token = data["access_token"]
+
+        response = JSONResponse(content=data)
+        response.set_cookie(
+            key="access_token",
+            value=token,
+            httponly=True,
+            secure=True,  # set to False for localhost dev
+            samesite="Lax"
+        )
+        return response
+        #return login_user(user, db)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 

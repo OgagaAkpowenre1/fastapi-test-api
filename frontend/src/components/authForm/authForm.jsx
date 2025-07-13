@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Header from '../header/header';
-import { ToastContainer, toast } from "react-toastify"
+import { toast } from "react-toastify"
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/authContext';
 import './authForm.css'
@@ -98,7 +98,7 @@ const AuthForm =  () => {
                 <input type="password" name="password" id="password" placeholder='Enter your password' onChange={(e) => setPassword(e.target.value)} />
                 </div>
 
-                <button type="submit">Sign Up</button>
+                <button type="submit">Sign Up/Sign In</button>
             </form>
 
             

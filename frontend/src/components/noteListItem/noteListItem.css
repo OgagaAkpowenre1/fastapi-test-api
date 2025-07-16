@@ -1,10 +1,16 @@
 .note-list-item{
     text-align: center;
-    transition: 0.5s background;
+    transition: background 0.3s, color 0.3s;
     cursor: pointer;
+    padding: 0.1rem 0;
 }
 
 .note-list-item:hover {
     background: darkgray;   
 }
 
+.note-list-item.active {
+    background: darkgray;
+    font-weight: 600;
+    border: 1px solid #888;
+}

@@ -13,6 +13,8 @@ const NoteAppContainer = () => {
     const [notes, setNotes] = useState([])
     const [noteContent, setNoteContent] = useState('')
 
+    //console.log(selectedNote);
+
     const handleCreateNote = async () => {
         try {
             console.log("clicked")
@@ -70,6 +72,23 @@ const NoteAppContainer = () => {
         }
     }
 
+    const handleDelete = async () => {
+        try {
+            console.log("Deleting note ", selectedNote.id)
+            const res = await fetch(`/api/notes/delete/${selectedNote.id}`, {
+                method: 'POST',
+                credentials: 'include'
+            })
+            if (!res.ok) throw new Error("Failed to delete note")
+            setNotes(prev => prev.filter(note => note.id !== selectedNote.id))
+            setSelectedNote(null)
+            console.log("Deleted successfully")
+        } catch (error) {
+            console.error("Error deleting note", error)
+            toast.error("Error deleting note")
+        }
+    }
+
     useEffect(() => {
 
         const fetchNotes = async () => {
@@ -81,7 +100,7 @@ const NoteAppContainer = () => {
                 if (!res.ok) throw new Error("Failed to fetch notes")
                 const data = await res.json()
                 setNotes(data)
-                console.log(data)
+                //console.log(data)
             } catch (error) {
                 console.error("Fetch notes error", error)
                 toast.error("Failed to fetch notes")
@@ -108,6 +127,8 @@ const NoteAppContainer = () => {
                 notes={notes} 
                 handleCreateNote={handleCreateNote}
                 handleSave={handleSave}
+                selectedNote={selectedNote}
+                handleDelete={handleDelete}
             />
             </div>
         </>

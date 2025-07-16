@@ -45,8 +45,8 @@ def edit_note(user_id: int, note_id: int, updated_content: str, db:Session):
     if not note:
         raise HTTPException(status_code=404, detail="Note not found")
 
-    print("BEFORE:", note.content)
+    #print("BEFORE:", note.content)
     note.content = updated_content
-    print("AFTER:", note.content)
+    #print("AFTER:", note.content)
     db.commit()
     return note

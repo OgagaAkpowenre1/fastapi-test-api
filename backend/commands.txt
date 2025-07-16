@@ -7,6 +7,5 @@ uvicorn main:app --reload
 
 
 to do
-add delete note functionality
 add update user info functionality
 

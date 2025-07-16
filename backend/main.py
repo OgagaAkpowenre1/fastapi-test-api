@@ -53,15 +53,15 @@ async def login_user_route(user: UserLogin, db: Session = Depends(get_db)):
             secure=True,  # set to False for localhost dev
             samesite="Lax"
         )
-        return response
+        return response 
         #return login_user(user, db)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
 # user account edit route
-@app.put("/users/{user_id}/edit")
-async def update_user_route(user_id: int, updates: UserUpdate, db: Session = Depends(get_db)):
-    return update_user(user_id, updates, db)
+@app.put("/users/edit")
+async def update_user_route(updates: UserUpdate, db: Session = Depends(get_db), current_user:User=Depends(get_current_user)):
+    return update_user(current_user.id, updates, db)
 
 # fetch all user accounts route
 @app.post("/users/fetch/all")

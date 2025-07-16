@@ -3,7 +3,7 @@ import { useAuth } from '../../context/authContext';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-const UserModal = () => {
+const UserModal = ({setShowUserUpdate}) => {
 
     const {logout} = useAuth();
     const navigate = useNavigate();
@@ -19,8 +19,7 @@ const UserModal = () => {
     return (
         <div className='user-modal'>
             <button onClick={handleLogout}>Logout</button>
-            <button>Update User Details</button>
-            <button>Delete Account</button>
+            <button onClick={() => setShowUserUpdate(true)}>Update User Details</button>
         </div>
     )
 }

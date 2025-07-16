@@ -3,7 +3,7 @@ import { useState } from 'react';
 import UserModal from '../userModal/userModal';
 import { useAuth } from '../../context/authContext';
 
-const Navbar = ({toggleNoteList, showNoteList}) => {
+const Navbar = ({toggleNoteList, showNoteList, setShowUserUpdate}) => {
     const [showModal, setShowModal] = useState(false);
     const {user} = useAuth();
 
@@ -25,7 +25,7 @@ const Navbar = ({toggleNoteList, showNoteList}) => {
                     alt="" 
                     onClick={toggleModal} 
                 />
-                {showModal && <UserModal />}
+                {showModal && <UserModal setShowUserUpdate={setShowUserUpdate} />}
             </div>
         </nav>
     )

@@ -5,6 +5,7 @@ import TextBox from '../textBox/textBox';
 import Navbar from '../navbar/navbar'
 import { useAuth } from '../../context/authContext';
 import { toast } from 'react-toastify';
+import UserInfoForm from '../userInfoForm/userInfoForm';
 
 const NoteAppContainer = () => {
     const [showNoteList, setShowNoteList] = useState(false)
@@ -12,6 +13,8 @@ const NoteAppContainer = () => {
     const {user} = useAuth()
     const [notes, setNotes] = useState([])
     const [noteContent, setNoteContent] = useState('')
+    const [showUserUpdate, setShowUserUpdate] = useState(false)
+    
 
     //console.log(selectedNote);
 
@@ -113,7 +116,7 @@ const NoteAppContainer = () => {
     
     return (
         <>
-            <Navbar toggleNoteList={() => {setShowNoteList(!showNoteList)}} showNoteList={showNoteList} />
+            <Navbar toggleNoteList={() => {setShowNoteList(!showNoteList)}} showNoteList={showNoteList} setShowUserUpdate={setShowUserUpdate} />
             <div className='note-app-container'>
             <TextBox 
                 className={showNoteList ? 'hidden' : 'visible'} 
@@ -130,6 +133,7 @@ const NoteAppContainer = () => {
                 selectedNote={selectedNote}
                 handleDelete={handleDelete}
             />
+            {showUserUpdate && <UserInfoForm setShowUserUpdate={setShowUserUpdate} />}
             </div>
         </>
     )

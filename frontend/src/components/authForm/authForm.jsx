@@ -8,8 +8,6 @@ import './authForm.css'
 const AuthForm =  () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false)
-    const BASE_URL = 'https://8000-firebase-fastapi-test-api-1748915675389.cluster-jbb3mjctu5cbgsi6hwq6u4btwe.cloudworkstations.dev';
 
     const navigate = useNavigate()
     const { login } = useAuth()
@@ -25,7 +23,7 @@ const AuthForm =  () => {
             const createRes = await fetch(`/api/users/create`, {
                 method: 'POST', 
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json' 
                 },
                 credentials: "include",
                 body: JSON.stringify({
